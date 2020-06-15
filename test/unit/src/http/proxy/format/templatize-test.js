@@ -85,3 +85,11 @@ test('Templatizer does not replace fingerprinted assets locally', t => {
   t.notOk(result.includes('${arc.static(\'/this-is-fine.gif\')}'), 'Templatizer stripped out arc.static')
   t.ok(result.includes('/this-is-fine.gif'), 'Templatizer replaced asset reference with fingerprint (including leading slash)')
 })
+
+test('can interpret js template strings as js', t=> {
+  t.plan(1)
+  let str = "<div>${ 'cat'.toUpperCase() + (1 + 1) }</div>"
+  let response = { body: buf(str) }
+  let result = sut({ response }).body.toString()
+  t.ok(result === '<div>CAT2</div>', 'haha')
+})

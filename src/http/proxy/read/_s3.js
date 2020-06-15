@@ -26,7 +26,7 @@ let pretty = require('./_pretty')
  */
 module.exports = async function readS3 (params) {
 
-  let { Bucket, Key, IfNoneMatch, isFolder, isProxy, config } = params
+  let { Bucket, Key, IfNoneMatch, isFolder, isProxy, config, request } = params
   let { ARC_STATIC_PREFIX, ARC_STATIC_FOLDER } = process.env
   let prefix = ARC_STATIC_PREFIX || ARC_STATIC_FOLDER || config.bucket && config.bucket.folder
   let assets = config.assets || staticAssets
@@ -46,6 +46,16 @@ module.exports = async function readS3 (params) {
       // Not necessary to flag response formatter for anti-caching
       // Those headers are already set in S3 file metadata
       Key = assets[Key]
+    }
+
+    // Check for progressive bundle upgrade request
+    if (assets && assets[Key] && isCaptured === false) {
+      return {
+        statusCode: 302,
+        headers: {
+          location: `/${ assets[Key] }` 
+        }
+      }
     }
 
     /**
@@ -97,6 +107,7 @@ module.exports = async function readS3 (params) {
       response = templatizeResponse({
         isBinary,
         assets,
+        request,
         response
       })
 

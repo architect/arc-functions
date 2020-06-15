@@ -92,7 +92,7 @@ function proxy (config={}) {
     // Ensure response shape is correct for proxy SPA responses
     let isProxy = req.resource === '/{proxy+}' || !!req.rawPath
 
-    return await read({ Key, Bucket, IfNoneMatch, isFolder, isProxy, config })
+    return await read({ Key, Bucket, IfNoneMatch, isFolder, isProxy, config, request: req })
   }
 }
 

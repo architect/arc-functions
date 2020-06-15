@@ -2,3 +2,4 @@
 arc-proxy-*
 coverage/
 src/http/get-index
+lodash.template-*

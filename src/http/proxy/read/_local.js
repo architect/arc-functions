@@ -26,7 +26,7 @@ let pretty = require('./_pretty')
 module.exports = async function readLocal (params) {
 
   let { ARC_SANDBOX_PATH_TO_STATIC, ARC_STATIC_PREFIX, ARC_STATIC_FOLDER } = process.env
-  let { Key, IfNoneMatch, isFolder, isProxy, config } = params
+  let { Key, IfNoneMatch, isFolder, isProxy, config, request } = params
   let headers = {}
   let response = {}
 
@@ -96,6 +96,7 @@ module.exports = async function readLocal (params) {
       response = templatizeResponse({
         isBinary,
         assets,
+        request,
         response,
         isLocal: true
       })
