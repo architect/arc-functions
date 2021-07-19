@@ -4,6 +4,11 @@
 Also see: [Architect changelog](https://github.com/architect/architect/blob/master/changelog.md)
 ---
 
+## [3.15.0] 2021-07-02
+
+### Added 
+- New option for getting the full manifest of static assets from the arc.static() function. arc.static('',{fullManifest:true}) returns an object with the full list of files. This is useful for creating a cache manifest for a service worker etc.
+---
 ## [3.14.1] 2021-05-25
 
 ### Fixed

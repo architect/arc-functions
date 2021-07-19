@@ -92,6 +92,8 @@ Returns the fully-qualified URI of a static asset for the project-relative `asse
 
 - `stagePath`: boolean, prepends `/staging` or `/production` to the asset path; useful if the current app is being run on an naked (non-domain-mapped) API Gateway
 
+- `fullManifest`: boolean, returns an object with the full manifest of static assets instead of a single asset. `arc.static('',{fullManifest:true})` returns `{path:<path>,assets:[<asset1>,<asset2>]}`
+
 
 ## `arc.tables(callback)`
 
