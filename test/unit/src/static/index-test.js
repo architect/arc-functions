@@ -52,7 +52,7 @@ test('Staging env returns non-fingerprinted path if static manifest is not prese
   t.equal(asset, '/_static/foo.png', 'Returned non-fingerprinted path')
 })
 
-test('Staging env returns non-fingerprinted path if static manifest is present', t => {
+test('Staging env returns fingerprinted path if static manifest is present', t => {
   t.plan(1)
   reset()
   manifestExists = true
@@ -61,14 +61,13 @@ test('Staging env returns non-fingerprinted path if static manifest is present',
   t.equal(asset, '/_static/foo-1a2b3d.png', 'Returned fingerprinted path')
 })
 
-test('Staging env returns non-fingerprinted path if static manifest is present', t => {
+test('Staging env returns non-fingerprinted path if file is not present in static manifest mapping', t => {
   t.plan(1)
   reset()
   manifestExists = true
   process.env.NODE_ENV = 'staging'
-  t.throws(() => {
-    arcStatic('bar.png')
-  }, 'Static helper throws error if asset is not found')
+  let asset = arcStatic('bar.png')
+  t.equal(asset, '/_static/bar.png', 'Returned non-fingerprinted path')
 })
 
 test('Passing stagePath option adds API Gateway /staging or /production to path', t => {

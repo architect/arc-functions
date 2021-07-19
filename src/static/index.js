@@ -24,7 +24,7 @@ module.exports = function _static (asset, options = {}) {
     let pkg = JSON.parse(read(manifest))
     let asset = pkg[key]
     if (!asset)
-      throw ReferenceError(`Could not find asset in static.json (asset fingerprint manifest): ${key}`)
+      return `${path}/${key}`
     return `${path}/${asset}`
   }
   return `${path}/${isIndex ? '' : key}`
