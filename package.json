@@ -52,7 +52,7 @@
     "@architect/eslint-config": "1.0.0",
     "@architect/sandbox": "^3.6.0",
     "aws-sdk": "2.799.0",
-    "aws-sdk-mock": "5.1.0",
+    "aws-sdk-mock": "5.2.1",
     "browserify": "^16.5.2",
     "codecov": "^3.8.1",
     "cross-env": "^7.0.2",
